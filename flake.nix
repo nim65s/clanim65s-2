@@ -40,7 +40,7 @@
             };
 
             # TODO: Document that there needs to be one controller
-            clan.networking.zerotier.controller.enable = true;
+            clan.networking.zerotier.networking.enable = true;
           };
           hattorian = {
             imports = [
@@ -59,10 +59,10 @@
 
             # remote> lsblk --output NAME,PTUUID,FSTYPE,SIZE,MOUNTPOINT
             clan.diskLayouts.singleDiskExt4 = {
-              device = "/dev/disk/by-id/__CHANGE_ME__";
+              device = "/dev/disk/by-id/wwn-0x500a0751210f7632";
             };
 
-            clan.networking.zerotier.networking.enable = true;
+            clan.networking.zerotier.controller.enable = true;
             /*
               After fix is deployed, uncomment the following line
               This will allow hattorian to share the VPN overlay network with fix

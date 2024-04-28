@@ -1,4 +1,9 @@
-{ pkgs, clan-core, config, ... }:
+{
+  pkgs,
+  clan-core,
+  config,
+  ...
+}:
 {
   imports = [ ./hardware-configuration.nix ];
   users.users.root.openssh.authorizedKeys.keys = [
@@ -33,7 +38,6 @@
     LC_TELEPHONE = "fr_FR.UTF-8";
     LC_TIME = "fr_FR.UTF-8";
   };
-
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -78,7 +82,7 @@
   };
 
   nix = {
-    nixPath = ["nixpkgs=${clan-core.inputs.nixpkgs}"];
+    nixPath = [ "nixpkgs=${clan-core.inputs.nixpkgs}" ];
     settings = {
       substituters = [
         "https://cache.nixos.org/"
@@ -103,5 +107,4 @@
 
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "fil";
-
 }
