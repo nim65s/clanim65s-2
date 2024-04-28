@@ -59,7 +59,7 @@
 
             # remote> lsblk --output NAME,PTUUID,FSTYPE,SIZE,MOUNTPOINT
             clan.diskLayouts.singleDiskExt4 = {
-              device = "/dev/disk/by-id/__CHANGE_ME__";
+              device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_500GB_23313J803792";
             };
 
             clan.networking.zerotier.networking.enable = true;
