@@ -42,10 +42,10 @@
             # TODO: Document that there needs to be one controller
             clan.networking.zerotier.controller.enable = true;
           };
-          sara = {
+          hattorian = {
             imports = [
               ./modules/shared.nix
-              ./machines/sara/configuration.nix
+              ./machines/hattorian/configuration.nix
             ];
 
             nixpkgs.hostPlatform = system;
@@ -53,7 +53,7 @@
             clanCore.machineIcon = null; # Optional, a path to an image file
 
             # Set this for clan commands use ssh i.e. `clan machines update`
-            clan.networking.targetHost = pkgs.lib.mkDefault "root@sara";
+            clan.networking.targetHost = pkgs.lib.mkDefault "root@hattorian";
 
             # local> clan facts generate
 
@@ -65,7 +65,7 @@
             clan.networking.zerotier.networking.enable = true;
             /*
               After fix is deployed, uncomment the following line
-              This will allow sara to share the VPN overlay network with fix
+              This will allow hattorian to share the VPN overlay network with fix
             */
             # clan.networking.zerotier.networkId = builtins.readFile ../fix/facts/zerotier-network-id;
           };
