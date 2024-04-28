@@ -19,10 +19,10 @@
         # local> mkdir -p ./machines/machine1
         # local> Edit ./machines/machine1/configuration.nix to your liking
         machines = {
-          jon = {
+          fix = {
             imports = [
               ./modules/shared.nix
-              ./machines/jon/configuration.nix
+              ./machines/fix/configuration.nix
             ];
 
             nixpkgs.hostPlatform = system;
@@ -30,7 +30,7 @@
             clanCore.machineIcon = null; # Optional, a path to an image file
 
             # Set this for clan commands use ssh i.e. `clan machines update`
-            clan.networking.targetHost = pkgs.lib.mkDefault "root@jon";
+            clan.networking.targetHost = pkgs.lib.mkDefault "root@fix";
 
             # TODO: Example how to use disko for more complicated setups
 
@@ -64,10 +64,10 @@
 
             clan.networking.zerotier.networking.enable = true;
             /*
-              After jon is deployed, uncomment the following line
-              This will allow sara to share the VPN overlay network with jon
+              After fix is deployed, uncomment the following line
+              This will allow sara to share the VPN overlay network with fix
             */
-            # clan.networking.zerotier.networkId = builtins.readFile ../jon/facts/zerotier-network-id;
+            # clan.networking.zerotier.networkId = builtins.readFile ../fix/facts/zerotier-network-id;
           };
         };
       };
