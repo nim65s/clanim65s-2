@@ -1,5 +1,5 @@
 {
-  description = "<Put your description here>";
+  description = "clan nim65s";
 
   inputs.clan-core.url = "git+https://git.clan.lol/clan/clan-core";
 
@@ -11,7 +11,7 @@
       # Usage see: https://docs.clan.lol
       clan = clan-core.lib.buildClan {
         directory = self;
-        clanName = "__CHANGE_ME__"; # Ensure this is internet wide unique.
+        clanName = "clanim65s"; # Ensure this is internet wide unique.
         clanIcon = null; # Optional, a path to an image file
 
         # Prerequisite: boot into the installer
