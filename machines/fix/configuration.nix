@@ -44,6 +44,9 @@
   # Configure console keymap
   console.keyMap = "fr";
 
+  sops.secrets.fil-passwd.neededForUsers = true;
+  sops.secrets.nim-passwd.neededForUsers = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = {
     fil = {
