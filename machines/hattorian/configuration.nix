@@ -6,12 +6,10 @@
 }:
 {
   imports = [ ./hardware-configuration.nix ];
+
   users.users.root.openssh.authorizedKeys.keys = [
-    # IMPORTANT! Add your SSH key here
-    # e.g. > cat ~/.ssh/id_ed25519.pub
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH38Iwc5sA/6qbBRL+uot3yqkuACDDu1yQbk6bKxiPGP nim@loon"
   ];
-
   services.xserver.enable = true;
 
   system.stateVersion = "24.05";
@@ -48,7 +46,7 @@
     nim = {
       shell = pkgs.fish;
       isNormalUser = true;
-      passwordFile = config.sops.secrets."hattorian-nim-passwd".path;
+      hashedPasswordFile = config.sops.secrets."hattorian-nim-passwd".path;
       description = "Guilhem Saurel";
       extraGroups = [
         "networkmanager"

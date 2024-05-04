@@ -55,7 +55,7 @@
   users.users = {
     fil = {
       isNormalUser = true;
-      passwordFile = config.sops.secrets.fil-passwd.path;
+      hashedPasswordFile = config.sops.secrets.fil-passwd.path;
       description = "Philippe Saurel";
       extraGroups = [ "networkmanager" ];
       packages = with pkgs; [
