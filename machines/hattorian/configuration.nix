@@ -7,14 +7,7 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH38Iwc5sA/6qbBRL+uot3yqkuACDDu1yQbk6bKxiPGP nim@loon"
-  ];
-  services.xserver.enable = true;
-
-  system.stateVersion = "24.05";
-  programs.fish.enable = true;
-  time.timeZone = "Europe/Paris";
+  console.keyMap = "fr-bepo";
 
   i18n = {
     defaultLocale = "fr_FR.UTF-8";
@@ -28,36 +21,6 @@
       LC_PAPER = "fr_FR.UTF-8";
       LC_TELEPHONE = "fr_FR.UTF-8";
       LC_TIME = "fr_FR.UTF-8";
-    };
-  };
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "fr";
-    variant = "bepo";
-  };
-
-  # Configure console keymap
-  console.keyMap = "fr-bepo";
-
-  sops.secrets."hattorian-nim-passwd".neededForUsers = true;
-
-  users.users = {
-    nim = {
-      shell = pkgs.fish;
-      isNormalUser = true;
-      hashedPasswordFile = config.sops.secrets."hattorian-nim-passwd".path;
-      description = "Guilhem Saurel";
-      extraGroups = [
-        "networkmanager"
-        "wheel"
-      ];
-      packages = with pkgs; [
-        vim
-        ncdu
-        dfc
-        git
-      ];
     };
   };
 
@@ -81,6 +44,51 @@
       experimental-features = [
         "nix-command"
         "flakes"
+      ];
+    };
+  };
+
+  programs.fish.enable = true;
+
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+    xkb = {
+      layout = "fr";
+      variant = "bepo";
+    };
+  };
+
+  sops.secrets."hattorian-nim-passwd".neededForUsers = true;
+
+  system.stateVersion = "24.05";
+
+  time.timeZone = "Europe/Paris";
+
+  users.users = {
+    root = {
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH38Iwc5sA/6qbBRL+uot3yqkuACDDu1yQbk6bKxiPGP nim@loon"
+      ];
+    };
+    nim = {
+      shell = pkgs.fish;
+      isNormalUser = true;
+      hashedPasswordFile = config.sops.secrets."hattorian-nim-passwd".path;
+      description = "Guilhem Saurel";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH38Iwc5sA/6qbBRL+uot3yqkuACDDu1yQbk6bKxiPGP nim@loon"
+      ];
+      packages = with pkgs; [
+        vim
+        ncdu
+        dfc
+        git
       ];
     };
   };

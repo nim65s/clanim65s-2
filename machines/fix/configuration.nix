@@ -81,6 +81,8 @@
     };
   };
 
+  networking.wireless.enable = true;
+
   nix = {
     nixPath = [ "nixpkgs=${clan-core.inputs.nixpkgs}" ];
     settings = {

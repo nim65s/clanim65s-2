@@ -1,13 +1,19 @@
 {
   description = "clan nim65s";
 
-  inputs.clan-core.url = "git+https://git.clan.lol/clan/clan-core";
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    clan-core = {
+      url = "git+https://git.clan.lol/clan/clan-core";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   outputs =
-    { self, clan-core, ... }:
+    { self, clan-core, nixpkgs, ... }:
     let
       system = "x86_64-linux";
-      pkgs = clan-core.inputs.nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
       # Usage see: https://docs.clan.lol
       clan = clan-core.lib.buildClan {
         directory = self;
@@ -22,6 +28,7 @@
           fix = {
             imports = [
               ./modules/shared.nix
+              ./modules/wireless.nix
               ./machines/fix/configuration.nix
             ];
 
@@ -35,7 +42,7 @@
             # TODO: Example how to use disko for more complicated setups
 
             # remote> lsblk --output NAME,PTUUID,FSTYPE,SIZE,MOUNTPOINT
-            clan.diskLayouts.singleDiskExt4 = {
+            clan.disk-layouts.singleDiskExt4 = {
               device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_500GB_23313J803792";
             };
 
@@ -45,6 +52,7 @@
           hattorian = {
             imports = [
               ./modules/shared.nix
+              ./modules/wireless.nix
               ./machines/hattorian/configuration.nix
             ];
 
@@ -58,7 +66,7 @@
             # local> clan facts generate
 
             # remote> lsblk --output NAME,PTUUID,FSTYPE,SIZE,MOUNTPOINT
-            clan.diskLayouts.singleDiskExt4 = {
+            clan.disk-layouts.singleDiskExt4 = {
               device = "/dev/disk/by-id/wwn-0x500a0751210f7632";
             };
 
