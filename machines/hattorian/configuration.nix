@@ -52,8 +52,9 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
+    #desktopManager.gnome.enable = true;
+    desktopManager.xfce.enable = true;
+    #displayManager.gdm.enable = true;
     xkb = {
       layout = "fr";
       variant = "bepo";
@@ -89,6 +90,7 @@
         ncdu
         dfc
         git
+        wpa_supplicant_gui
       ];
     };
   };

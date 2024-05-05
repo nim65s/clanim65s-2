@@ -1,5 +1,4 @@
-
-{ clan-core, config, ... }:
+{ config, ... }:
 {
   networking.wireless = {
     allowAuxiliaryImperativeNetworks = true;
@@ -9,5 +8,6 @@
       azv.psk = "@AZV_PSK@";
       baroustan.psk = "@BAROUSTAN_PSK@";
     };
+    userControlled.enable = true;
   };
 }

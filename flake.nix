@@ -85,6 +85,7 @@
       inherit (clan) nixosConfigurations clanInternals;
       # add the cLAN cli tool to the dev shell
       devShells.${system}.default = pkgs.mkShell {
+        NIX_SSHOPTS="-o ControlMaster=no";
         packages = [ clan-core.packages.${system}.clan-cli ];
       };
     };
