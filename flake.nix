@@ -7,10 +7,14 @@
       url = "git+https://git.clan.lol/clan/clan-core";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, clan-core, nixpkgs, ... }:
+    { self, clan-core, home-manager, nixpkgs, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -30,6 +34,14 @@
               ./modules/shared.nix
               ./modules/wireless.nix
               ./machines/fix/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.nim = import ./users/nim/home.nix;
+                };
+              }
             ];
 
             nixpkgs.hostPlatform = system;
@@ -54,6 +66,14 @@
               ./modules/shared.nix
               ./modules/wireless.nix
               ./machines/hattorian/configuration.nix
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.nim = import ./users/nim/home.nix;
+                };
+              }
             ];
 
             nixpkgs.hostPlatform = system;
