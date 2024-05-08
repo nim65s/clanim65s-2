@@ -91,6 +91,7 @@
         dfc
         git
         wpa_supplicant_gui
+        config.nur.repos.mic92.hello-nur
       ];
     };
   };

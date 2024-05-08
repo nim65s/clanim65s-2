@@ -1,7 +1,10 @@
-_:
+{config, ... }:
 {
   home = {
     homeDirectory = "/home/nim";
+    packages = [
+      #config.nur.repos.mic92.hello-nur
+    ];
     stateVersion = "24.05";
     username = "nim";
   };

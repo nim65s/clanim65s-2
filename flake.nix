@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
     clan-core = {
       url = "git+https://git.clan.lol/clan/clan-core";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +15,7 @@
   };
 
   outputs =
-    { self, clan-core, home-manager, nixpkgs, ... }:
+    { self, clan-core, home-manager, nixpkgs, nur, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -34,6 +35,7 @@
               ./modules/shared.nix
               ./modules/wireless.nix
               ./machines/fix/configuration.nix
+              nur.nixosModules.nur
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
@@ -66,6 +68,7 @@
               ./modules/shared.nix
               ./modules/wireless.nix
               ./machines/hattorian/configuration.nix
+              nur.nixosModules.nur
               home-manager.nixosModules.home-manager
               {
                 home-manager = {
